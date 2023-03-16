@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const TRANSPOSE_API = "https://api.transpose.io";
-const TRANSPOSE_API_KEY = "aVhH2tiUIzoqaIv5S0PKcmeJpxl8KBnn";
+const TRANSPOSE_API_KEY = process.env.NEXT_PUBLIC_TRANSPOSE_API_KEY;
 
 function runSQL(sql, parameters) {
   return axios

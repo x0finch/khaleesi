@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const ZERION_API = "https://api.zerion.io";
-const ZERION_API_KEY =
-  "emtfZGV2X2U1ZTI5ZjJiMDI4YjRkNWNiNWU3MzFkOTIyZWYzODViOg==";
+const ZERION_API_KEY = process.env.NEXT_PUBLIC_ZERION_API_KEY;
 
 export async function getPortfolioInternal(address) {
   const data = await axios

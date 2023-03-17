@@ -39,6 +39,7 @@ export default function Home() {
       console.log("data: ", data);
 
       const result = await openai.generate(data); //Promise.resolve("a.b");
+
       console.log("result: ", result);
 
       let names = result.split(".");

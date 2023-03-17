@@ -1,11 +1,11 @@
 import Head from "next/head";
 import { useState, useMemo } from "react";
 import styles from "./index.module.css";
-import axios from "axios";
 import * as transpose from "../libs/transpose";
 import * as zerion from "../libs/zerion";
 import * as random from "../libs/random";
 import * as openai from "../libs/openai";
+import firework from "./firework";
 
 const ETH_ADDRESS_PATTERN = /^(0x)[0-9a-f]{40}$/i;
 
@@ -35,9 +35,10 @@ export default function Home() {
 
     try {
       const data = await getData(address);
+      // new Promise((res) => setTimeout(() => res(0), 3000));
       console.log("data: ", data);
 
-      const result = await openai.generate(data);
+      const result = await openai.generate(data); //Promise.resolve("a.b");
       console.log("result: ", result);
 
       let names = result.split(".");
@@ -47,6 +48,7 @@ export default function Home() {
       names.splice(0, 0, data.prefix);
 
       setResult(names.filter((name) => name).join("·"));
+      firework(document.getElementById("canvas"), 6000);
     } catch (error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -72,6 +74,9 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <canvas id="canvas" className={styles.canvas}>
+          Canvas is not supported in your browser.
+        </canvas>
         <h3>
           <span style={{ color: "#10a37f", fontSize: "45px" }}>title</span>.me
         </h3>

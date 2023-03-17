@@ -1,10 +1,11 @@
-import axios from "axios"
+import axios from "axios";
 
-const OPENAI_API = "https://api.openai.com/v1/chat/completions"
-const OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY
+const OPENAI_API = "https://api.openai.com/v1/chat/completions";
+const OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
 
 export async function generate(data) {
-    const completion = await axios.post(
+  const completion = await axios
+    .post(
       OPENAI_API,
       {
         model: "gpt-3.5-turbo",
@@ -17,11 +18,11 @@ export async function generate(data) {
           Authorization: `Bearer ${OPENAI_API_KEY}`,
         },
       }
-    ).then(res => res.data)
-    
-    return completion.choices[0].message.content
-}
+    )
+    .then((res) => res.data);
 
+  return completion.choices[0].message.content;
+}
 
 function generatePrompt(data) {
   const {

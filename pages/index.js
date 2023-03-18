@@ -11,7 +11,7 @@ const ETH_ADDRESS_PATTERN = /^(0x)[0-9a-f]{40}$/i;
 
 export default function Home() {
   const [address, setAddress] = useState("");
-  const [result, setResult] = useState();
+  const [title, setTitle] = useState();
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
 
@@ -31,7 +31,7 @@ export default function Home() {
     }
 
     setLoading(true);
-    setResult("");
+    setTitle("");
 
     try {
       const data = await getData(address);
@@ -48,7 +48,7 @@ export default function Home() {
       data.mostUsedDex && names.splice(randomIndex, 0, data.mostUsedDex);
       names.splice(0, 0, data.prefix);
 
-      setResult(names.filter((name) => name).join("·"));
+      setTitle(names.filter((name) => name).join("·"));
       firework(document.getElementById("canvas"), 6000);
     } catch (error) {
       // Consider implementing your own error handling logic here
@@ -75,9 +75,6 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <canvas id="canvas" className={styles.canvas}>
-          Canvas is not supported in your browser.
-        </canvas>
         <h3>
           <span style={{ color: "#10a37f", fontSize: "45px" }}>title</span>.me
         </h3>
@@ -96,8 +93,44 @@ export default function Home() {
             value={buttonName}
           />
         </form>
-        <div className={styles.result}>{result}</div>
+        {title ? <Certificate title={title} /> : null}
+        <canvas id="canvas" className={styles.canvas}>
+          Canvas is not supported in your browser.
+        </canvas>
       </main>
+    </div>
+  );
+}
+
+function Certificate({ title }) {
+  return (
+    <div
+      style={{
+        position: "relative",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translateX(-50%) translateY(-20%)",
+          fontWeight: "bold",
+          fontSize: "24px",
+          maxWidth: "300px",
+          whiteSpace: "normal",
+        }}
+      >
+        {title}
+      </div>
+      <img
+        alt=""
+        src="/certificate.png"
+        style={{ width: "1000px", objectFit: "contain" }}
+      />
     </div>
   );
 }

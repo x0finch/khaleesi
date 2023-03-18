@@ -25,7 +25,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 60px;
 }
 .main .icon {
   width: 34px;
@@ -35,7 +34,7 @@
   line-height: 40px;
   font-weight: bold;
   color: #202123;
-  margin: 42px 0;
+  margin: 32px 0;
 }
 
 .main form {
@@ -63,6 +62,7 @@
   border-radius: 4px;
   text-align: center;
   cursor: pointer;
+  margin-bottom: 24px;
 }
 
 .main input[error="true"] {

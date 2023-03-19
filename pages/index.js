@@ -122,9 +122,11 @@ function Certificate({ title }) {
           fontSize: "24px",
           maxWidth: "300px",
           whiteSpace: "normal",
+          textAlign: "center",
         }}
       >
         {title}
+        <div style={{ marginTop: "32px" }}>特此表扬，望继续努力</div>
       </div>
       <img
         alt=""
